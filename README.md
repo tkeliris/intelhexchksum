@@ -1,5 +1,5 @@
 # intelhexchksum
-Checksum validation and fix for IntelHex files
+Checksum validation and repair for IntelHex files
 
 ```
 Usage: intelchksum.py [options]
