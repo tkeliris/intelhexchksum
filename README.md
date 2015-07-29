@@ -10,5 +10,6 @@ Options:
                         Input file for checksum verification
   -o OUTPUTFILE, --output=OUTPUTFILE
                         Output file with valid checksum
+  -r                    Delete output file
 ```
 Released under MIT license

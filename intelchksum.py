@@ -18,6 +18,8 @@ def main(argv):
                       help="Input file for checksum verification", default = None)
     parser.add_option("-o", "--output", dest="outputfile",
                       help="Output file with valid checksum", default = None)
+    parser.add_option("-r", action="store_true", dest="remout",
+                      help="Delete output file")
        
     # Get command line arguments                  
     (options, args) = parser.parse_args()
@@ -26,12 +28,17 @@ def main(argv):
     if not options.inputfile:
             parser.print_help()
             sys.exit(1)
+    
+    infile = options.inputfile
+    if options.remout:
+        del_output = True
     else:
-        infile = options.inputfile
-        if not options.outputfile:
-            outfile = os.path.splitext(infile)[0] + "_vld" + os.path.splitext(infile)[1]
-        else:
-            outfile = options.outputfile
+        del_output = False
+    if not options.outputfile:
+        outfile = os.path.splitext(infile)[0] + "_vld" + os.path.splitext(infile)[1]
+    else:
+        outfile = options.outputfile
+
 
     # Variable initialization
     linecount = 0
@@ -48,7 +55,8 @@ def main(argv):
         chksum = 0
         line_data = line.rstrip()
         # Check if data has correct length
-        if len(line_data) % 2 == 0:
+        if len(line_data) % 2 == 0 and line_data:
+            call(["rm", outfile])
             raise ValueError
         # Calculate checksum
         if line_data:
@@ -65,6 +73,8 @@ def main(argv):
     f_in.close()
     f_out.close()
 
+    if del_output:
+        call(["rm", outfile])
     # Print information
     if missmatch:
         print("Total number of lines: {}".format(linecount))
