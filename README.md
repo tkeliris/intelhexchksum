@@ -1,6 +1,7 @@
 # intelhexchksum
 Checksum validation and fix for IntelHex files
 
+```
 Usage: intelchksum.py [options]
 
 Options:
@@ -11,3 +12,4 @@ Options:
                         Output file with valid checksum
 
 Released under MIT license
+```
