@@ -10,6 +10,5 @@ Options:
                         Input file for checksum verification
   -o OUTPUTFILE, --output=OUTPUTFILE
                         Output file with valid checksum
-
-Released under MIT license
 ```
+Released under MIT license
